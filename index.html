@@ -155,14 +155,24 @@ footer {
 
 <script>
 function extractFromLink() {
-  const platform = sourcePlatform.value;
-  const link = publicLink.value.trim();
+ function extractFromLink() {
+  const link = document.getElementById("publicLink").value.trim();
+  const platform = document.getElementById("sourcePlatform").value;
+  const output = document.getElementById("autoOutput");
 
-  autoOutput.textContent =
-    "Source platform: " + platform + "\n\n" +
+  if (!link) {
+    output.textContent = "Please paste a public link first.";
+    return;
+  }
+
+  output.textContent =
     "Link received:\n" + link + "\n\n" +
-    "Automatic extraction is not guaranteed.\n" +
-    "If questions do not appear, use Paste / Export.";
+    "Source platform: " + platform + "\n\n" +
+    "Automatic extraction from links is limited by platform restrictions.\n\n" +
+    "NEXT STEPS:\n" +
+    "1. Open the link in a new tab\n" +
+    "2. Use the platform’s export or copy feature\n" +
+    "3. Paste the questions into the box below for full conversion.";
 }
 
 function convert(target) {
