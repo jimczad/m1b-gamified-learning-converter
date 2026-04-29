@@ -175,12 +175,30 @@ function extractFromLink() {
     "3. Paste the questions into the box below for full conversion.";
 }
 
+function parseQuestionBlocks(text) {
+  return text
+    .split(/\n\s*\n/)       // split on blank lines
+    .map(block => block.trim())
+    .filter(block => block.length > 20);
+}
+
 function convert(target) {
-  const text = pasteInput.value.trim();
-  if (!text) {
-    pasteOutput.textContent = "Paste questions first.";
+  const raw = document.getElementById("pasteInput").value.trim();
+  const output = document.getElementById("pasteOutput");
+
+  if (!raw) {
+    output.textContent = "Please paste questions before converting.";
     return;
   }
+
+  const questions = parseQuestionBlocks(raw);
+
+  output.textContent =
+    "Converted for: " + target + "\n\n" +
+    "Detected " + questions.length + " question blocks:\n\n" +
+    questions.map((q, i) => (i + 1) + ". " + q).join("\n\n");
+}
+``
 
   const promptMap = {
     "Gimkit":
@@ -207,11 +225,30 @@ function copyText(id) {
 }
 
 function exportCSV() {
-  const text = pasteInput.value.trim();
+  const text = document.getElementById("pasteInput").value.trim();
+
   if (!text) {
     alert("Paste questions before exporting CSV.");
     return;
   }
+
+  const questions = parseQuestionBlocks(text);
+
+  let csv = "Question\n";
+  questions.forEach(q => {
+    csv += `"${q.replace(/"/g, '""')}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "gamified_questions.csv";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
 
   const rows = text.split("\n").map(q => `"${q.replace(/"/g, '""')}"`).join("\n");
   const csv = "Question\n" + rows;
