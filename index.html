@@ -9,8 +9,8 @@
     :root {
       --primary: #006699;
       --green: #66cc33;
-      --accent: #9facd7;
       --black: #000000;
+      --light: #f5f8fb;
     }
 
     body {
@@ -33,32 +33,24 @@
 
     .section {
       border-left: 6px solid var(--primary);
-      background: #f5f8fb;
-      padding: 1.2rem 1.5rem;
+      background: var(--light);
+      padding: 1.4rem 1.6rem;
       margin-bottom: 2.5rem;
     }
 
-    label {
-      display: block;
-      margin-top: 1rem;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.4rem;
-      font-family: inherit;
-    }
-
     textarea {
-      height: 180px;
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.5rem;
+      font-family: inherit;
+      height: 190px;
     }
 
     button {
       background: var(--green);
       color: #000;
       border: none;
-      padding: 0.7rem 1.4rem;
+      padding: 0.75rem 1.6rem;
       font-size: 1rem;
       margin-top: 1rem;
       margin-right: 0.5rem;
@@ -69,29 +61,18 @@
       opacity: 0.9;
     }
 
-    .copy-btn {
-      background: var(--accent);
-    }
-
     .output {
-      background: #fafafa;
+      background: #ffffff;
       border: 1px solid #ccc;
       padding: 1rem;
       margin-top: 1rem;
       white-space: pre-wrap;
     }
 
-    .callout {
-      background: #eef4fb;
-      border: 1px solid #c5d6ec;
-      padding: 1rem;
-      margin-top: 1rem;
-    }
-
     footer {
       margin-top: 3rem;
       font-size: 0.9rem;
-      border-top: 2px solid var(--accent);
+      border-top: 2px solid #ccc;
       padding-top: 1rem;
     }
   </style>
@@ -108,82 +89,79 @@
   </strong></p>
 
   <p>
-    Platforms such as Kahoot, Quizlet, and Blooket are not approved for direct student use. However,
-    educators may reuse their own educator‑created content from these platforms by converting it into
-    an approved instructional tool.
+    Educators may reuse their own instructional content from platforms such as Kahoot, Quizlet,
+    and Blooket by converting it into an approved instructional tool using the workflow below.
   </p>
 </div>
 
 <div class="section">
-  <h2>How This Process Works</h2>
+  <h2>Step 1: Get Your Questions Out of the Original Tool</h2>
 
-  <ol>
-    <li>
-      Use the AI tool to <strong>extract and organize questions, answer choices, and correct answers</strong>
-      from a PDF or pasted content.
-    </li>
-    <li>
-      Copy the AI‑formatted questions in the neutral format.
-    </li>
-    <li>
-      Paste the questions into this page to <strong>convert them into a format optimized for your selected approved tool</strong>.
-    </li>
-  </ol>
+  <p><strong>Kahoot, Blooket, Gimkit</strong></p>
+  <ul>
+    <li>Open the quiz while logged in</li>
+    <li>Turn on <em>Show Answers</em></li>
+    <li>Print → Save as PDF</li>
+  </ul>
 
-  <div class="callout">
-    <p>
-      👉 Open the AI extraction tool here:
-    </p>
-    <p>
-      <a href="https://app.magicschool.ai/tools/custom-chatbot?toolCustomizationId=1640326a-f8aa-43e3-9e6b-f03882c4be67" target="_blank" rel="noopener noreferrer">
-        <strong>M1B Gamified Learning Tool Converter</strong>
-      </a>
-    </p>
-    <p>
-      (The AI tool opens in a new tab and is designed to work in conjunction with this website.)
-    </p>
-  </div>
-</div>
+  <p><strong>Quizlet</strong></p>
+  <ul>
+    <li>If you own the set: Export → Copy text</li>
+    <li>If you do not own the set: Print → Save as PDF</li>
+  </ul>
 
-<div class="section">
-  <h2>Step 1: Choose Your Target Tool</h2>
-
-  <label for="sourcePlatform">Approved Tool for Conversion</label>
-  <select id="sourcePlatform">
-    <option>Gimkit</option>
-    <option>Wayground</option>
-    <option>Nearpod</option>
-    <option>Microsoft Forms</option>
-  </select>
-</div>
-
-<div class="section">
-  <h2>Step 2: Paste AI‑Extracted Questions</h2>
+  <p><strong>Wayground (formerly Quizizz)</strong></p>
+  <ul>
+    <li>Open the assessment</li>
+    <li>Choose Worksheet view</li>
+    <li>Turn on Answer Key → Print or Download PDF</li>
+  </ul>
 
   <p>
-    Paste the questions exactly as provided by the AI tool. The format should include all questions,
-    answer choices, and correct answers clearly marked.
+    You will use either a <strong>PDF</strong> or <strong>copied text</strong> in the next step.
   </p>
-
-  <textarea id="pasteInput" placeholder="Paste AI‑extracted questions here…"></textarea>
 </div>
 
 <div class="section">
-  <h2>Step 3: Convert for an Approved Tool</h2>
+  <h2>Step 2: Use the AI Converter</h2>
 
+  <p>
+    Upload your PDF or paste copied questions into the AI tool below. The AI will extract questions,
+    answer choices, and correct answers into a neutral, transferable format.
+  </p>
+
+  <p>
+    👉
+    <a href="https://app.magicschool.ai/tools/custom-chatbot?toolCustomizationId=1640326a-f8aa-43e3-9e6b-f03882c4be67" target="_blank">
+      <strong>M1B Gamified Learning Tool Converter</strong>
+    </a>
+    (opens in a new tab)
+  </p>
+
+  <p>
+    Once the AI finishes, <strong>copy the entire formatted output</strong> and return here.
+  </p>
+</div>
+
+<div class="section">
+  <h2>Step 3: Convert & Export for an Approved Tool</h2>
+
+  <p><strong>Paste AI‑Formatted Questions</strong></p>
+  <textarea id="pasteInput" placeholder="Paste AI‑formatted questions here…"></textarea>
+
+  <h3>Convert for Your Chosen Tool</h3>
   <button onclick="convert('Gimkit')">Convert for Gimkit</button>
   <button onclick="convert('Wayground')">Convert for Wayground</button>
   <button onclick="convert('Nearpod')">Format for Nearpod</button>
   <button onclick="convert('Microsoft Forms')">Format for Microsoft Forms</button>
 
-  <button class="copy-btn" onclick="copyText('pasteOutput')">Copy Converted Output</button>
-  <button onclick="exportCSV()">Export CSV (Gimkit / Wayground)</button>
-
   <div class="output" id="pasteOutput">No formatted output yet.</div>
+
+  <button onclick="copyOutput()">Copy Converted Output</button>
+  <button onclick="exportCSV()">Export CSV (Gimkit / Wayground)</button>
 </div>
 
 <footer>
-  <p><strong>Disclaimer</strong></p>
   <p>
     This tool supports conversion of educator‑created instructional content only.
     Always review converted questions before student use.
@@ -191,45 +169,31 @@
 </footer>
 
 <script>
-function parseQuestionBlocks(text) {
+function splitQuestions(text) {
   return text
     .split(/\n\s*\n/)
-    .map(block => block.trim())
-    .filter(block => block.length > 30);
+    .map(q => q.trim())
+    .filter(q => q.length > 30);
 }
-
-const promptMap = {
-  "Gimkit":
-    "Create a Gimkit kit using the following questions. Use multiple‑choice format with one correct answer per question.",
-  "Wayground":
-    "Create a Wayground assessment from the following questions using clear multiple‑choice formatting.",
-  "Nearpod":
-    "Create a Nearpod Time to Climb activity using the following questions with four answer choices each.",
-  "Microsoft Forms":
-    "Create a Microsoft Forms quiz from the following questions and mark correct answers."
-};
 
 function convert(target) {
   const raw = document.getElementById("pasteInput").value.trim();
   const output = document.getElementById("pasteOutput");
 
   if (!raw) {
-    output.textContent = "Please paste AI‑extracted questions before converting.";
+    output.textContent = "Please paste the AI‑formatted questions first.";
     return;
   }
 
-  const questions = parseQuestionBlocks(raw);
+  const questions = splitQuestions(raw);
 
   output.textContent =
-    "AI PROMPT / CONVERSION NOTES:\n" +
-    promptMap[target] + "\n\n" +
-    "----------------------------------\n" +
-    "QUESTIONS:\n\n" +
+    "Converted for: " + target + "\n\n" +
     questions.map((q, i) => (i + 1) + ". " + q).join("\n\n");
 }
 
-function copyText(id) {
-  const text = document.getElementById(id).textContent;
+function copyOutput() {
+  const text = document.getElementById("pasteOutput").textContent;
   navigator.clipboard.writeText(text).then(
     () => alert("Copied to clipboard."),
     () => alert("Copy failed.")
@@ -239,11 +203,11 @@ function copyText(id) {
 function exportCSV() {
   const raw = document.getElementById("pasteInput").value.trim();
   if (!raw) {
-    alert("Paste questions before exporting CSV.");
+    alert("Paste questions before exporting.");
     return;
   }
 
-  const questions = parseQuestionBlocks(raw);
+  const questions = splitQuestions(raw);
   let csv = "Question\n";
 
   questions.forEach(q => {
@@ -251,14 +215,10 @@ function exportCSV() {
   });
 
   const blob = new Blob([csv], { type: "text/csv" });
-  const url = URL.createObjectURL(blob);
-
   const a = document.createElement("a");
-  a.href = url;
+  a.href = URL.createObjectURL(blob);
   a.download = "gamified_questions.csv";
-  document.body.appendChild(a);
   a.click();
-  document.body.removeChild(a);
 }
 </script>
 
