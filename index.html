@@ -51,7 +51,7 @@
     }
 
     textarea {
-      height: 160px;
+      height: 180px;
     }
 
     button {
@@ -81,6 +81,13 @@
       white-space: pre-wrap;
     }
 
+    .callout {
+      background: #eef4fb;
+      border: 1px solid #c5d6ec;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
     footer {
       margin-top: 3rem;
       font-size: 0.9rem;
@@ -101,37 +108,68 @@
   </strong></p>
 
   <p>
-    Tools such as Kahoot, Quizlet, and Blooket are not approved for student use, but may be used
-    as sources for educator‑created content when converting into approved platforms.
+    Platforms such as Kahoot, Quizlet, and Blooket are not approved for direct student use. However,
+    educators may reuse their own educator‑created content from these platforms by converting it into
+    an approved instructional tool.
   </p>
 </div>
 
 <div class="section">
-  <h2>Step 1: Collect Your Questions</h2>
+  <h2>How This Process Works</h2>
 
-  <label for="sourcePlatform">Source Platform</label>
-  <select id="sourcePlatform">
-    <option>Kahoot</option>
-    <option>Quizlet</option>
-    <option>Blooket</option>
-    <option>Gimkit</option>
-    <option>Wayground</option>
-  </select>
+  <ol>
+    <li>
+      Use the AI tool to <strong>extract and organize questions, answer choices, and correct answers</strong>
+      from a PDF or pasted content.
+    </li>
+    <li>
+      Copy the AI‑formatted questions in the neutral format.
+    </li>
+    <li>
+      Paste the questions into this page to <strong>convert them into a format optimized for your selected approved tool</strong>.
+    </li>
+  </ol>
 
-  <label for="publicLink">Public Link</label>
-  <input id="publicLink" placeholder="https:// (must open without logging in)">
-
-  <button onclick="extractFromLink()">Extract Questions</button>
-  <button class="copy-btn" onclick="copyText('autoOutput')">Copy Output</button>
-
-  <div class="output" id="autoOutput">No link processed yet.</div>
-
-  <h3>Paste / Export (Always Works)</h3>
-  <textarea id="pasteInput" placeholder="Paste questions and answers here…"></textarea>
+  <div class="callout">
+    <p>
+      👉 Open the AI extraction tool here:
+    </p>
+    <p>
+      <a href="https://app.magicschool.ai/tools/custom-chatbot?toolCustomizationId=1640326a-f8aa-43e3-9e6b-f03882c4be67" target="_blank" rel="noopener noreferrer">
+        <strong>M1B Gamified Learning Tool Converter</strong>
+      </a>
+    </p>
+    <p>
+      (The AI tool opens in a new tab and is designed to work in conjunction with this website.)
+    </p>
+  </div>
 </div>
 
 <div class="section">
-  <h2>Step 2: Convert for an Approved Tool</h2>
+  <h2>Step 1: Choose Your Target Tool</h2>
+
+  <label for="sourcePlatform">Approved Tool for Conversion</label>
+  <select id="sourcePlatform">
+    <option>Gimkit</option>
+    <option>Wayground</option>
+    <option>Nearpod</option>
+    <option>Microsoft Forms</option>
+  </select>
+</div>
+
+<div class="section">
+  <h2>Step 2: Paste AI‑Extracted Questions</h2>
+
+  <p>
+    Paste the questions exactly as provided by the AI tool. The format should include all questions,
+    answer choices, and correct answers clearly marked.
+  </p>
+
+  <textarea id="pasteInput" placeholder="Paste AI‑extracted questions here…"></textarea>
+</div>
+
+<div class="section">
+  <h2>Step 3: Convert for an Approved Tool</h2>
 
   <button onclick="convert('Gimkit')">Convert for Gimkit</button>
   <button onclick="convert('Wayground')">Convert for Wayground</button>
@@ -147,49 +185,28 @@
 <footer>
   <p><strong>Disclaimer</strong></p>
   <p>
-    This tool supports educator‑created instructional content only.
-    Automatic extraction is limited by third‑party platforms.
+    This tool supports conversion of educator‑created instructional content only.
+    Always review converted questions before student use.
   </p>
 </footer>
 
 <script>
-function extractFromLink() {
-  const link = document.getElementById("publicLink").value.trim();
-  const platform = document.getElementById("sourcePlatform").value;
-  const output = document.getElementById("autoOutput");
-
-  if (!link) {
-    output.textContent = "Please paste a public link first.";
-    return;
-  }
-
-  output.textContent =
-    "Link received:\n\n" +
-    link + "\n\n" +
-    "Source platform: " + platform + "\n\n" +
-    "Automatic extraction from links is limited by platform restrictions.\n\n" +
-    "NEXT STEPS:\n" +
-    "1. Open the link in a new tab\n" +
-    "2. Use the platform’s export or copy feature\n" +
-    "3. Paste the questions into the box below for full conversion.";
-}
-
 function parseQuestionBlocks(text) {
   return text
     .split(/\n\s*\n/)
     .map(block => block.trim())
-    .filter(block => block.length > 20);
+    .filter(block => block.length > 30);
 }
 
 const promptMap = {
   "Gimkit":
-    "Create a Gimkit kit using the following questions. Use multiple‑choice format. Ensure one correct answer per question.",
+    "Create a Gimkit kit using the following questions. Use multiple‑choice format with one correct answer per question.",
   "Wayground":
-    "Create a Wayground assessment from the following questions. Use student‑friendly language and standard multiple‑choice formatting.",
+    "Create a Wayground assessment from the following questions using clear multiple‑choice formatting.",
   "Nearpod":
-    "Create a Nearpod Time to Climb activity using the following questions. Each question should have four answer choices.",
+    "Create a Nearpod Time to Climb activity using the following questions with four answer choices each.",
   "Microsoft Forms":
-    "Create a Microsoft Forms quiz using the following questions. Mark correct answers appropriately."
+    "Create a Microsoft Forms quiz from the following questions and mark correct answers."
 };
 
 function convert(target) {
@@ -197,14 +214,14 @@ function convert(target) {
   const output = document.getElementById("pasteOutput");
 
   if (!raw) {
-    output.textContent = "Please paste questions before converting.";
+    output.textContent = "Please paste AI‑extracted questions before converting.";
     return;
   }
 
   const questions = parseQuestionBlocks(raw);
 
   output.textContent =
-    "AI PROMPT (Copy into the tool’s AI creator):\n" +
+    "AI PROMPT / CONVERSION NOTES:\n" +
     promptMap[target] + "\n\n" +
     "----------------------------------\n" +
     "QUESTIONS:\n\n" +
