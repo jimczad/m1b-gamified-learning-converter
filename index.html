@@ -155,7 +155,6 @@ footer {
 
 <script>
 function extractFromLink() {
- function extractFromLink() {
   const link = document.getElementById("publicLink").value.trim();
   const platform = document.getElementById("sourcePlatform").value;
   const output = document.getElementById("autoOutput");
@@ -166,7 +165,8 @@ function extractFromLink() {
   }
 
   output.textContent =
-    "Link received:\n" + link + "\n\n" +
+    "Link received:\n\n" +
+    link + "\n\n" +
     "Source platform: " + platform + "\n\n" +
     "Automatic extraction from links is limited by platform restrictions.\n\n" +
     "NEXT STEPS:\n" +
@@ -177,10 +177,21 @@ function extractFromLink() {
 
 function parseQuestionBlocks(text) {
   return text
-    .split(/\n\s*\n/)       // split on blank lines
+    .split(/\n\s*\n/)
     .map(block => block.trim())
     .filter(block => block.length > 20);
 }
+
+const promptMap = {
+  "Gimkit":
+    "Create a Gimkit kit using the following questions. Use multiple‑choice format. Ensure one correct answer per question.",
+  "Wayground":
+    "Create a Wayground assessment from the following questions. Use student‑friendly language and standard multiple‑choice formatting.",
+  "Nearpod":
+    "Create a Nearpod Time to Climb activity using the following questions. Each question should have four answer choices.",
+  "Microsoft Forms":
+    "Create a Microsoft Forms quiz using the following questions. Mark correct answers appropriately."
+};
 
 function convert(target) {
   const raw = document.getElementById("pasteInput").value.trim();
@@ -194,47 +205,31 @@ function convert(target) {
   const questions = parseQuestionBlocks(raw);
 
   output.textContent =
-    "Converted for: " + target + "\n\n" +
-    "Detected " + questions.length + " question blocks:\n\n" +
-    questions.map((q, i) => (i + 1) + ". " + q).join("\n\n");
-}
-``
-
-  const promptMap = {
-    "Gimkit":
-      "Create a Gimkit kit using the following questions. Use multiple‑choice format. Ensure one correct answer per question.",
-    "Wayground":
-      "Create a Wayground assessment from the following questions. Use student‑friendly language and standard multiple‑choice formatting.",
-    "Nearpod":
-      "Create a Nearpod Time to Climb activity using the following questions. Each question should have four answer choices.",
-    "Microsoft Forms":
-      "Create a Microsoft Forms quiz using the following questions. Mark correct answers appropriately."
-  };
-
-  pasteOutput.textContent =
     "AI PROMPT (Copy into the tool’s AI creator):\n" +
     promptMap[target] + "\n\n" +
     "----------------------------------\n" +
-    "QUESTIONS:\n" +
-    text;
+    "QUESTIONS:\n\n" +
+    questions.map((q, i) => (i + 1) + ". " + q).join("\n\n");
 }
 
 function copyText(id) {
   const text = document.getElementById(id).textContent;
-  navigator.clipboard.writeText(text).alert ? null : alert("Copied to clipboard.");
+  navigator.clipboard.writeText(text).then(
+    () => alert("Copied to clipboard."),
+    () => alert("Copy failed.")
+  );
 }
 
 function exportCSV() {
-  const text = document.getElementById("pasteInput").value.trim();
-
-  if (!text) {
+  const raw = document.getElementById("pasteInput").value.trim();
+  if (!raw) {
     alert("Paste questions before exporting CSV.");
     return;
   }
 
-  const questions = parseQuestionBlocks(text);
-
+  const questions = parseQuestionBlocks(raw);
   let csv = "Question\n";
+
   questions.forEach(q => {
     csv += `"${q.replace(/"/g, '""')}"\n`;
   });
@@ -249,17 +244,8 @@ function exportCSV() {
   a.click();
   document.body.removeChild(a);
 }
-
-  const rows = text.split("\n").map(q => `"${q.replace(/"/g, '""')}"`).join("\n");
-  const csv = "Question\n" + rows;
-
-  const blob = new Blob([csv], { type: "text/csv" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "gamified_questions.csv";
-  a.click();
-}
 </script>
+``
 
 </body>
 </html>
