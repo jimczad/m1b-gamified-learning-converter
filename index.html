@@ -1,93 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Monroe One BOCES Gamified Learning Tool Converter</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Monroe One BOCES Gamified Learning Tool Converter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root {
-  --primary: #006699;
-  --green: #66cc33;
-  --accent: #9facd7;
-  --black: #000000;
-}
+  <style>
+    :root {
+      --primary: #006699;
+      --green: #66cc33;
+      --accent: #9facd7;
+      --black: #000000;
+    }
 
-body {
-  font-family: "Century Gothic", Arial, Helvetica, sans-serif;
-  margin: 2rem;
-  max-width: 1100px;
-  color: var(--black);
-  line-height: 1.6;
-}
+    body {
+      font-family: "Century Gothic", Arial, Helvetica, sans-serif;
+      margin: 2rem;
+      max-width: 1100px;
+      color: var(--black);
+      line-height: 1.6;
+    }
 
-h1 {
-  font-weight: bold;
-  color: var(--green);
-}
+    h1 {
+      font-weight: bold;
+      color: var(--green);
+    }
 
-h2, h3 {
-  color: var(--primary);
-  font-weight: normal;
-}
+    h2, h3 {
+      color: var(--primary);
+      font-weight: normal;
+    }
 
-.section {
-  border-left: 6px solid var(--primary);
-  background: #f5f8fb;
-  padding: 1.2rem 1.5rem;
-  margin-bottom: 2.5rem;
-}
+    .section {
+      border-left: 6px solid var(--primary);
+      background: #f5f8fb;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
 
-label {
-  display: block;
-  margin-top: 1rem;
-}
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
 
-input, textarea, select {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.4rem;
-  font-family: inherit;
-}
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.4rem;
+      font-family: inherit;
+    }
 
-textarea {
-  height: 160px;
-}
+    textarea {
+      height: 160px;
+    }
 
-button {
-  background: var(--green);
-  color: #000;
-  border: none;
-  padding: 0.7rem 1.4rem;
-  font-size: 1rem;
-  margin-top: 1rem;
-  margin-right: 0.5rem;
-  cursor: pointer;
-}
+    button {
+      background: var(--green);
+      color: #000;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
 
-button:hover {
-  opacity: 0.9;
-}
+    button:hover {
+      opacity: 0.9;
+    }
 
-.output {
-  background: #fafafa;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin-top: 1rem;
-  white-space: pre-wrap;
-}
+    .copy-btn {
+      background: var(--accent);
+    }
 
-.copy-btn {
-  background: var(--accent);
-}
+    .output {
+      background: #fafafa;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-top: 1rem;
+      white-space: pre-wrap;
+    }
 
-footer {
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  border-top: 2px solid var(--accent);
-  padding-top: 1rem;
-}
-</style>
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      border-top: 2px solid var(--accent);
+      padding-top: 1rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -100,17 +100,16 @@ footer {
     Monroe One BOCES that support interactive formative assessment and guided practice for students.
   </strong></p>
 
-<p>
+  <p>
     Tools such as Kahoot, Quizlet, and Blooket are not approved for student use, but may be used
     as sources for educator‑created content when converting into approved platforms.
   </p>
-
 </div>
 
 <div class="section">
   <h2>Step 1: Collect Your Questions</h2>
 
-  <label>Source Platform</label>
+  <label for="sourcePlatform">Source Platform</label>
   <select id="sourcePlatform">
     <option>Kahoot</option>
     <option>Quizlet</option>
@@ -119,7 +118,7 @@ footer {
     <option>Wayground</option>
   </select>
 
-  <label>Public Link</label>
+  <label for="publicLink">Public Link</label>
   <input id="publicLink" placeholder="https:// (must open without logging in)">
 
   <button onclick="extractFromLink()">Extract Questions</button>
@@ -245,7 +244,6 @@ function exportCSV() {
   document.body.removeChild(a);
 }
 </script>
-``
 
 </body>
 </html>
