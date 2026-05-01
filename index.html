@@ -139,7 +139,10 @@
 
   <p><strong>Paste AI‑Formatted Questions</strong></p>
 
+ 
   <button onclick="pasteFromClipboard()">Paste from Clipboard</button>
+  <button onclick="clearPasteBox()">Clear Text</button>
+
   <textarea id="pasteInput" placeholder="Paste AI‑formatted questions here…"></textarea>
 
   <h3>Convert for Your Chosen Tool</h3>
@@ -178,10 +181,18 @@ async function pasteFromClipboard() {
   try {
     document.getElementById("pasteInput").value = await navigator.clipboard.readText();
   } catch {
-    alert("Clipboard access blocked. Please paste manually.");
+    alert("Clipboard access blocked. Please paste manually with CTRL-V.");
   }
 }
+/* Clear Paste Box */
+<script>
+function clearPasteBox() {
+  document.getElementById("pasteInput").value = "";
+  document.getElementById("pasteOutput").textContent = "No formatted output yet.";
+}
+</script>
 
+  
 /* Utilities */
 function splitQuestionBlocks(text) {
   return text.split(/QUESTION\s+\d+/i).map(b => b.trim()).filter(b => b.length > 30);
