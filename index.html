@@ -31,6 +31,11 @@
       margin-bottom: 2.5rem;
     }
 
+    /* Step 1 platform notes */
+    .platform-notes {
+      font-size: 0.9rem;
+    }
+
     textarea {
       width: 100%;
       height: 210px;
@@ -44,7 +49,7 @@
       color: #000;
       border: none;
       padding: 0.75rem 1.6rem;
-      margin-top: 0.8rem;
+      margin-top: 0.6rem;
       margin-right: 0.5rem;
       cursor: pointer;
       font-size: 1rem;
@@ -65,8 +70,38 @@
       text-decoration: underline;
     }
 
-     platform-notes {
-     font-size: 0.9rem;
+    /* Step 2 layout */
+    .ai-steps {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .ai-steps-text {
+      flex: 2;
+    }
+
+    .ai-steps-image {
+      flex: 1;
+    }
+
+    .ai-steps-image img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .image-caption {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 0.4rem;
+    }
+
+    @media (max-width: 768px) {
+      .ai-steps {
+        flex-direction: column;
+      }
     }
 
     footer {
@@ -106,45 +141,38 @@
   </ul>
 
   <div class="platform-notes">
-  <p><strong>Platform‑Specific Notes</strong></p>
+    <p><strong>Platform‑Specific Notes</strong></p>
 
-  <p><strong>
-    <a href="https://dashboard.blooket.com/my-sets"
-       target="_blank" rel="noopener noreferrer">Blooket</a>
-  </strong></p>
-  <ul>
-    <li>Open your question set</li>
-    <li>Turn on the <em>Answer Key</em></li>
-    <li>Select <strong>Print</strong></li>
-    <li><strong>Do NOT save the PDF</strong> — Blooket exports image‑based files</li>
-    <li><strong>Copy questions and answers directly from the print preview</strong></li>
-  </ul>
+    <p><strong>
+      <a href="https://dashboard.blooket.com/my-sets" target="_blank" rel="noopener noreferrer">Blooket</a>
+    </strong></p>
+    <ul>
+      <li><strong>Do NOT save the PDF</strong> — image‑based export</li>
+      <li>Copy questions and answers directly from the browser’s print preview</li>
+    </ul>
 
-  <p><strong>
-    <a href="https://kahoot.it/" target="_blank" rel="noopener noreferrer">Kahoot</a>,
-    <a href="https://www.gimkit.com/me" target="_blank" rel="noopener noreferrer">Gimkit</a>
-  </strong></p>
-  <ul>
-    <li>Make sure <em>Show Answers</em> is enabled</li>
-    <li>Copy from print preview or save as PDF</li>
-  </ul>
+    <p><strong>
+      <a href="https://kahoot.it/" target="_blank" rel="noopener noreferrer">Kahoot</a>,
+      <a href="https://www.gimkit.com/me" target="_blank" rel="noopener noreferrer">Gimkit</a>
+    </strong></p>
+    <ul>
+      <li>Ensure <em>Show Answers</em> is enabled</li>
+    </ul>
 
-  <p><strong>
-    <a href="https://quizlet.com/" target="_blank" rel="noopener noreferrer">Quizlet</a>
-  </strong></p>
-  <ul>
-    <li>If you own the set: Export → Copy Text</li>
-    <li>If not: Print → copy from preview or save as PDF</li>
-  </ul>
+    <p><strong>
+      <a href="https://quizlet.com/" target="_blank" rel="noopener noreferrer">Quizlet</a>
+    </strong></p>
+    <ul>
+      <li>Export → Copy Text if you own the set</li>
+    </ul>
 
-  <p><strong>
-    <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer">Wayground</a>
-  </strong></p>
-  <ul>
-    <li>Switch to Worksheet view</li>
-    <li>Turn on the Answer Key</li>
-    <li>Print → copy from preview or download PDF</li>
-  </ul>
+    <p><strong>
+      <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer">Wayground</a>
+    </strong></p>
+    <ul>
+      <li>Worksheet view → Answer Key → Print</li>
+    </ul>
+  </div>
 </div>
 
 <!-- STEP 2 -->
@@ -160,18 +188,31 @@
     👉
     <a href="https://app.magicschool.ai/tools/custom-chatbot?toolCustomizationId=1640326a-f8aa-43e3-9e6b-f03882c4be67"
        target="_blank" rel="noopener noreferrer">
-      <strong>M1B Gamified Learning Tool Converter (AI)</strong>
+       <strong>M1B Gamified Learning Tool Converter (AI)</strong>
     </a>
-    <br>(opens in a new tab)
+    (opens in a new tab)
   </p>
 
-  <ol>
-    <li>Open the AI tool using the link above</li>
-    <li>Upload your PDF or paste copied text</li>
-    <li><strong>Scroll down and click the “Generate” button</strong></li>
-    <li>Wait for the AI to format your questions</li>
-    <li>Copy the <strong>entire AI‑generated output</strong></li>
-  </ol>
+  <div class="ai-steps">
+    <div class="ai-steps-text">
+      <ol>
+        <li>Open the AI tool using the link above</li>
+        <li>Upload your PDF or paste copied text</li>
+        <li><strong>Scroll down and click the “Generate” button</strong></li>
+        <li>Wait for the AI to format your questions</li>
+        <li>Copy the <strong>entire AI‑generated output</strong></li>
+      </ol>
+    </div>
+
+    <div class="ai-steps-image">
+      <a href="https://app.magicschool.ai/tools/custom-chatbot?toolCustomizationId=1640326a-f8aa-43e3-9e6b-f03882c4be67"
+         target="_blank" rel="noopener noreferrer">
+        <img src="generate-button.png"
+             alt="Location of the Generate button in the AI Converter">
+      </a>
+      <p class="image-caption">Example: Generate button location</p>
+    </div>
+  </div>
 </div>
 
 <!-- STEP 3 -->
@@ -229,7 +270,7 @@ function clearPasteBox() {
 }
 
 function splitQuestionBlocks(text) {
-  return text.split(/QUESTION\\s+\\d+/i)
+  return text.split(/QUESTION\s+\d+/i)
     .map(b => b.trim())
     .filter(b => b.length > 30);
 }
@@ -241,10 +282,10 @@ function convertDisplay(target) {
     return;
   }
   pasteOutput.textContent =
-    "Converted for: " + target + "\\n\\n" +
+    "Converted for: " + target + "\n\n" +
     splitQuestionBlocks(raw)
-      .map((b,i) => `Question ${i+1}\\n${b}`)
-      .join("\\n\\n");
+      .map((b,i) => `Question ${i+1}\n${b}`)
+      .join("\n\n");
 }
 
 function copyOutput() {
@@ -259,15 +300,15 @@ function exportGimkitCSV() {
   }
 
   let csv =
-    "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\\n";
+    "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
 
   splitQuestionBlocks(raw).forEach(block => {
-    const lines = block.split("\\n").map(l => l.trim()).filter(Boolean);
+    const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
     const question =
       lines.find(l => l.startsWith("Question:"))?.replace("Question:","").trim() || "";
 
-    const answers = lines.filter(l => /^[A-D]\\./.test(l)).map(l => ({
-      text: l.replace(/^[A-D]\\.\\s*/,"").replace("✅","").trim(),
+    const answers = lines.filter(l => /^[A-D]\./.test(l)).map(l => ({
+      text: l.replace(/^[A-D]\.\s*/,"").replace("✅","").trim(),
       correct: l.includes("✅")
     }));
 
@@ -275,7 +316,7 @@ function exportGimkitCSV() {
     const incorrect = answers.filter(a => !a.correct).map(a => a.text);
 
     csv += [question, correct, incorrect[0]||"", incorrect[1]||"", incorrect[2]||""]
-      .map(v => `"${v.replace(/"/g,'""')}"`).join(",") + "\\n";
+      .map(v => `"${v.replace(/"/g,'""')}"`).join(",") + "\n";
   });
 
   const link = document.createElement("a");
