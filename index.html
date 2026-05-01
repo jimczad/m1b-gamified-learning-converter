@@ -15,7 +15,7 @@
 
     body {
       font-family: "Century Gothic", Arial, Helvetica, sans-serif;
-      margin: 2rem auto; /* Center page content */
+      margin: 2rem auto;
       max-width: 1100px;
       color: var(--black);
       line-height: 1.6;
@@ -43,7 +43,7 @@
       padding: 0.6rem;
       margin-top: 0.5rem;
       font-family: inherit;
-      height: 190px;
+      height: 200px;
     }
 
     button {
@@ -85,130 +85,47 @@
 <div class="section">
   <p><strong>
     Wayground, Gimkit, Nearpod, Microsoft Forms, and Edpuzzle are approved instructional tools within
-    Monroe One BOCES that support interactive formative assessment and guided practice for students.
+    Monroe One BOCES.
   </strong></p>
-
-  <p>
-    Educators may reuse their own instructional content from platforms such as Kahoot, Quizlet,
-    and Blooket by converting it into an approved instructional tool using the workflow below.
-  </p>
 </div>
 
 <div class="section">
-  <h2>Step 1: Get Your Questions Out of the Original Tool</h2>
-
-  <p><strong>Kahoot, Blooket, Gimkit</strong></p>
-  <ul>
-    <li>Open the quiz while logged in</li>
-    <li>Turn on <em>Show Answers</em></li>
-    <li>Print → Save as PDF</li>
-  </ul>
-
-  <p><strong>Quizlet</strong></p>
-  <ul>
-    <li>If you own the set: Export → Copy text</li>
-    <li>If you do not own the set: Print → Save as PDF</li>
-  </ul>
-
-  <p><strong>Wayground (formerly Quizizz)</strong></p>
-  <ul>
-    <li>Open the assessment</li>
-    <li>Choose Worksheet view</li>
-    <li>Turn on Answer Key → Print or Download PDF</li>
-  </ul>
-</div>
-
-<div class="section">
-  <h2>Step 2: Use the AI Converter</h2>
-
-  <p>
-    Upload your PDF or paste copied questions into the AI tool below. The AI will extract questions,
-    answer choices, and correct answers into a neutral, transferable format.
-  </p>
-
-  <p>
-    👉
-    <a href="https://app.magicschool.ai/tools/custom-chatbot?toolCustomizationId=1640326a-f8aa-43e3-9e6b-f03882c4be67"
-       target="_blank">
-      <strong>M1B Gamified Learning Tool Converter</strong>
-    </a>
-    (opens in a new tab)
-  </p>
-
-  <p>
-    Once the AI finishes, <strong>copy the entire formatted output</strong> and return here.
-  </p>
-</div>
-
-<div class="section">
-  <h2>Step 3: Convert & Import into an Approved Tool</h2>
+  <h2>Step 3: Convert & Export</h2>
 
   <p><strong>Paste AI‑Formatted Questions</strong></p>
   <textarea id="pasteInput" placeholder="Paste AI‑formatted questions here…"></textarea>
 
-  <h3>Convert for Your Chosen Tool</h3>
-  <button onclick="convert('Gimkit')">Convert for Gimkit</button>
-  <button onclick="convert('Wayground')">Convert for Wayground</button>
-  <button onclick="convert('Nearpod')">Format for Nearpod</button>
-  <button onclick="convert('Microsoft Forms')">Format for Microsoft Forms</button>
+  <button onclick="convertDisplay('Gimkit')">Convert for Gimkit</button>
+  <button onclick="convertDisplay('Wayground')">Convert for Wayground</button>
+  <button onclick="convertDisplay('Nearpod')">Format for Nearpod</button>
+  <button onclick="convertDisplay('Microsoft Forms')">Format for Microsoft Forms</button>
 
   <div class="output" id="pasteOutput">No formatted output yet.</div>
 
   <button onclick="copyOutput()">Copy Converted Output</button>
-  <button onclick="exportCSV()">Export CSV (Gimkit / Wayground)</button>
-
-  <h3>Final Import Instructions</h3>
-
-  <p><strong>Gimkit</strong></p>
-  <ul>
-    <li>Create a new Kit</li>
-    <li>Select <em>Import from Spreadsheet</em></li>
-    <li>Upload the exported CSV file</li>
-  </ul>
-
-  <p><strong>Wayground</strong></p>
-  <ul>
-    <li><strong>Option A (Recommended):</strong> Use <em>Wayground AI Import</em> and paste the converted questions</li>
-    <li><strong>Option B:</strong> Create a new Assessment and paste or import questions manually</li>
-  </ul>
-
-  <p><strong>Nearpod</strong></p>
-  <ul>
-    <li>Create a new lesson</li>
-    <li>Add a <em>Time to Climb</em> or quiz activity</li>
-    <li>Paste the formatted questions</li>
-  </ul>
-
-  <p><strong>Microsoft Forms</strong></p>
-  <ul>
-    <li>Create a new Quiz</li>
-    <li>Paste questions or use text import</li>
-    <li>Mark correct answers before releasing</li>
-  </ul>
+  <button onclick="exportGimkitCSV()">Export CSV for Gimkit</button>
 </div>
 
 <footer>
   <p>
-    Questions or issues? Please contact <strong>James Czadzeck</strong> at
-    <a href="mailto:James_Czadzeck@boces.monroe.edu">
-      James_Czadzeck@boces.monroe.edu
-    </a>.
-  </p>
-  <p>
-    This tool supports conversion of educator‑created instructional content only.
-    Always review converted questions before student use.
+    Questions or issues? Contact <strong>James Czadzeck</strong> at
+    James_Czadzeck@boces.monroe.edu
   </p>
 </footer>
 
 <script>
-function splitQuestions(text) {
+/* ---------- Utilities ---------- */
+
+function splitQuestionBlocks(text) {
   return text
-    .split(/\n\s*\n/)
-    .map(q => q.trim())
-    .filter(q => q.length > 30);
+    .split(/QUESTION\s+\d+/i)
+    .map(b => b.trim())
+    .filter(b => b.length > 30);
 }
 
-function convert(target) {
+/* ---------- Display Conversion (human‑readable) ---------- */
+
+function convertDisplay(target) {
   const raw = document.getElementById("pasteInput").value.trim();
   const output = document.getElementById("pasteOutput");
 
@@ -217,23 +134,67 @@ function convert(target) {
     return;
   }
 
-  const questions = splitQuestions(raw);
-
+  const blocks = splitQuestionBlocks(raw);
   output.textContent =
     "Converted for: " + target + "\n\n" +
-    questions.map((q, i) => (i + 1) + ". " + q).join("\n\n");
+    blocks.map((b, i) => `Question ${i + 1}\n${b}`).join("\n\n");
 }
 
 function copyOutput() {
-  const text = document.getElementById("pasteOutput").textContent;
-  navigator.clipboard.writeText(text);
+  navigator.clipboard.writeText(
+    document.getElementById("pasteOutput").textContent
+  );
 }
 
-function exportCSV() {
-  alert(
-    "Use the Gimkit-specific CSV export when importing into Gimkit.\n" +
-    "Wayground supports direct paste or AI import."
-  );
+/* ---------- Gimkit CSV Export (REAL, TEMPLATE‑MATCHED) ---------- */
+
+function exportGimkitCSV() {
+  const raw = document.getElementById("pasteInput").value.trim();
+
+  if (!raw) {
+    alert("Paste AI‑formatted questions before exporting.");
+    return;
+  }
+
+  const blocks = splitQuestionBlocks(raw);
+
+  let csv =
+    "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
+
+  blocks.forEach(block => {
+    const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
+
+    const questionLine = lines.find(l => l.startsWith("Question:"));
+    const question = questionLine
+      ? questionLine.replace("Question:", "").trim()
+      : "";
+
+    const answers = lines
+      .filter(l => /^[A-D]\./.test(l))
+      .map(l => ({
+        text: l.replace(/^[A-D]\.\s*/, "").replace("✅", "").trim(),
+        correct: l.includes("✅")
+      }));
+
+    const correctAnswer = answers.find(a => a.correct)?.text || "";
+    const incorrectAnswers = answers.filter(a => !a.correct).map(a => a.text);
+
+    const row = [
+      question,
+      correctAnswer,
+      incorrectAnswers[0] || "",
+      incorrectAnswers[1] || "",
+      incorrectAnswers[2] || ""
+    ].map(v => `"${v.replace(/"/g, '""')}"`);
+
+    csv += row.join(",") + "\n";
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "gimkit_import.csv";
+  link.click();
 }
 </script>
 
