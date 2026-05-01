@@ -31,7 +31,6 @@
       margin-bottom: 2.5rem;
     }
 
-    
     textarea {
       width: 100%;
       height: 200px;
@@ -67,6 +66,11 @@
       border-top: 2px solid #ccc;
       padding-top: 1rem;
     }
+
+    .section a {
+      color: inherit;
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -74,6 +78,7 @@
 
 <h1>Monroe One BOCES Gamified Learning Tool Converter</h1>
 
+<!-- STEP 1 -->
 <div class="section">
   <h2>Step 1: Get Your Questions Out of the Original Tool</h2>
 
@@ -91,60 +96,48 @@
     <li>
       When the browser’s <strong>print preview</strong> opens:
       <ul>
-        <li>If the text is selectable, you can <strong>copy it directly</strong> from the preview</li>
-        <li>If you prefer, you may also <strong>Save as PDF and upload to the AI tool</strong></li>
+        <li>If the text is selectable, copy directly from the preview</li>
+        <li>You may also save as a PDF if the text is readable</li>
       </ul>
     </li>
   </ul>
 
-  <p><strong>Important Platform‑Specific Notes</strong></p>
+  <p><strong>Platform‑Specific Notes</strong></p>
 
- <p><strong>
-  <a href="https://dashboard.blooket.com/my-sets" target="_blank" rel="noopener noreferrer">
-    Blooket
-  </a>
-</strong></p>
-<ul>
-  <li>Open your question set</li>
-  <li>Turn on the <em>Answer Key</em></li>
-  <li>Select <strong>Print</strong></li>
-  <li>
-    When the browser’s <strong>print preview</strong> opens:
-    <ul>
-      <li><strong>Do NOT save the PDF</strong> — Blooket exports quizzes as images</li>
-      <li><strong>Copy the questions and answers directly from the print preview</strong></li>
-    </ul>
-  </li>
-  <li>Paste the copied text into the AI Converter (Step 2)</li>
-</ul>
-
-<p>
-  <strong>
-    <a href="https://kahoot.it/" target="_blank" rel="noopener noreferrer">Kahoot</a>,
-    <a href="https://www.gimkit.com/me" target="_blank" rel="noopener noreferrer">Gimkit</a>
-  </strong>
-</p>
+  <p><strong>
+    <a href="https://dashboard.blook-setsBlooket</a>
+  </strong></p>
   <ul>
-    <li>Make sure <em>Show Answers</em> is turned on before printing</li>
-    <li>You may either copy from print preview or save as a PDF</li>
+    <li>Open your question set</li>
+    <li>Turn on the <em>Answer Key</em></li>
+    <li>Select <strong>Print</strong></li>
+    <li>
+      When print preview opens:
+      <ul>
+        <li><strong>Do NOT save the PDF</strong> — Blooket exports image‑based files</li>
+        <li><strong>Copy questions and answers directly from the print preview</strong></li>
+      </ul>
+    </li>
   </ul>
 
-  <a href="https://quizlet.com/" target="_blank" rel="noopener noreferrer">Quizlet</a
-  <ul>
-    <li>If you own the set: use <em>Export → Copy Text</em></li>
+  <p><strong>
+    <a href="https://kahhoot</a>,
+    <a href="https://www.gimkit.com/me" target="_blank" rel="noopenere <em>Show Answers</em> is enabled before printing</li>
+    <li>Copy from print preview or save as PDF</li>
+  </ul>
+
+  <p><strong>
+    <a href="https://quizlet.com/" target="_blank" rel="If you own the set: Export → Copy Text</li>
     <li>If not: Print → copy from preview or save as PDF</li>
   </ul>
 
-  <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer">Wayground</a
-  <ul>
-    <li>Switch to Worksheet view</li>
+  <p><strong>
+    <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer to Worksheet view</li>
     <li>Turn on the Answer Key</li>
-    <li>Print → copy from preview or download as PDF</li>
+    <li>Print → copy from preview or download PDF</li>
   </ul>
 
-  <p>
-    Once you have the questions and answers copied or saved, continue to <strong>Step 2</strong>.
-  </p>
+  <p>Continue to <strong>Step 2</strong> once your content is copied or saved.</p>
 </div>
 
 <!-- STEP 2 -->
@@ -152,30 +145,33 @@
   <h2>Step 2: Use the AI Converter</h2>
 
   <p>
-    Upload a PDF or paste copied text into the AI tool below. It will extract questions,
+    In this step, you’ll use a Monroe One BOCES custom AI tool to extract questions,
     answer choices, and correct answers into a neutral format.
   </p>
 
   <p>
-    👉  
-    <a href="https://app.magicschool.ai/tools/custom-chatbot?toolCustomizationId=1640326a-f8aa-43e3-9e6b-f03882c4be67" target="_blank">
-      <strong>M1B Gamified Learning Tool Converter</strong>
+    👉
+    <a href="https://app.magicschool.ai/tools/custom-chatbot?toolCustomizationId=1640326a-f8aa-43e3-9e6b-f03882c4be67"
+       target="_blank" rel="noopenererter (AI)</strong>
     </a>
-    (opens in a new tab)
+    <br>(opens in a new tab)
   </p>
 
-  <p>
-    Copy the AI‑formatted output when finished and return here.
-  </p>
+  <ol>
+    <li>Click the link above to open the AI tool</li>
+    <li>Upload your PDF or paste copied questions</li>
+    <li><strong>Scroll down and click the “Generate” button</strong></li>
+    <li>Wait for the AI to format your questions</li>
+    <li>Copy the <strong>entire AI‑generated output</strong></li>
+  </ol>
+
+  <p>Return here and continue to <strong>Step 3</strong>.</p>
 </div>
 
 <!-- STEP 3 -->
 <div class="section">
   <h2>Step 3: Convert & Export into an Approved Tool</h2>
 
-  <p><strong>Paste AI‑Formatted Questions</strong></p>
-
- 
   <button onclick="pasteFromClipboard()">Paste from Clipboard</button>
   <button onclick="clearPasteBox()">Clear Text</button>
 
@@ -191,89 +187,87 @@
 
   <button onclick="copyOutput()">Copy Converted Output</button>
   <button onclick="exportGimkitCSV()">Export CSV for Gimkit</button>
-
-  <h3>Final Import Notes</h3>
-  <ul>
-    <li><strong>Gimkit:</strong> Import using the downloaded CSV file</li>
-    <li><strong>Wayground:</strong> Use AI Import or paste questions directly</li>
-    <li><strong>Nearpod:</strong> Paste questions into a quiz or Time to Climb</li>
-    <li><strong>Microsoft Forms:</strong> Paste questions and mark correct answers</li>
-  </ul>
 </div>
 
 <footer>
   <p>
-    Questions or issues? Contact <strong>Jim Czadzeck</strong> at  
+    Questions or issues? Contact <strong>James Czadzeck</strong> at
     James_Czadzeck@boces.monroe.edu
   </p>
   <p>
-    This tool supports conversion of educator‑created content only. Always review before student use.
+    This tool supports conversion of educator‑created content only.
+    Always review before student use.
   </p>
 </footer>
 
 <script>
-/* Paste from Clipboard */
 async function pasteFromClipboard() {
   try {
-    document.getElementById("pasteInput").value = await navigator.clipboard.readText();
+    document.getElementById("pasteInput").value =
+      await navigator.clipboard.readText();
   } catch {
-    alert("Clipboard access blocked. Please paste manually with CTRL-V.");
+    alert("Clipboard access blocked. Please paste manually.");
   }
 }
-/* Clear Paste Box */
-<script>
+
 function clearPasteBox() {
   document.getElementById("pasteInput").value = "";
-  document.getElementById("pasteOutput").textContent = "No formatted output yet.";
+  document.getElementById("pasteOutput").textContent =
+    "No formatted output yet.";
 }
-</script>
 
-  
-/* Utilities */
 function splitQuestionBlocks(text) {
-  return text.split(/QUESTION\s+\d+/i).map(b => b.trim()).filter(b => b.length > 30);
+  return text.split(/QUESTION\s+\d+/i)
+    .map(b => b.trim())
+    .filter(b => b.length > 30);
 }
 
-/* Display conversion */
 function convertDisplay(target) {
   const raw = pasteInput.value.trim();
-  if (!raw) return pasteOutput.textContent = "Paste AI output first.";
-
-  const blocks = splitQuestionBlocks(raw);
+  if (!raw) {
+    pasteOutput.textContent = "Paste AI output first.";
+    return;
+  }
   pasteOutput.textContent =
     "Converted for: " + target + "\n\n" +
-    blocks.map((b,i)=>`Question ${i+1}\n${b}`).join("\n\n");
+    splitQuestionBlocks(raw)
+      .map((b,i) => `Question ${i+1}\n${b}`)
+      .join("\n\n");
 }
 
 function copyOutput() {
   navigator.clipboard.writeText(pasteOutput.textContent);
 }
 
-/* Gimkit CSV export */
 function exportGimkitCSV() {
   const raw = pasteInput.value.trim();
-  if (!raw) return alert("Paste AI output first.");
+  if (!raw) {
+    alert("Paste AI output first.");
+    return;
+  }
 
   let csv =
     "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
 
   splitQuestionBlocks(raw).forEach(block => {
-    const lines = block.split("\n").map(l=>l.trim()).filter(Boolean);
-    const q = lines.find(l=>l.startsWith("Question:"))?.replace("Question:","").trim() || "";
-    const answers = lines.filter(l=>/^[A-D]\./.test(l)).map(l=>({
+    const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
+    const question =
+      lines.find(l => l.startsWith("Question:"))?.replace("Question:","").trim() || "";
+
+    const answers = lines.filter(l => /^[A-D]\./.test(l)).map(l => ({
       text: l.replace(/^[A-D]\.\s*/,"").replace("✅","").trim(),
       correct: l.includes("✅")
     }));
-    const correct = answers.find(a=>a.correct)?.text || "";
-    const incorrect = answers.filter(a=>!a.correct).map(a=>a.text);
 
-    csv += [q, correct, incorrect[0]||"", incorrect[1]||"", incorrect[2]||""]
-      .map(v=>`"${v.replace(/"/g,'""')}"`).join(",") + "\n";
+    const correct = answers.find(a => a.correct)?.text || "";
+    const incorrect = answers.filter(a => !a.correct).map(a => a.text);
+
+    csv += [question, correct, incorrect[0]||"", incorrect[1]||"", incorrect[2]||""]
+      .map(v => `"${v.replace(/"/g,'""')}"`).join(",") + "\n";
   });
 
-  const blob = new Blob([csv], {type:"text/csv"});
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
+  a.href = URL.createObjectURL(new Blob([csv], {type:"text/csv"}));
   a.download = "gimkit_import.csv";
   a.click();
 }
