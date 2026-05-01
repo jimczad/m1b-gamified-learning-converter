@@ -33,7 +33,7 @@
 
     textarea {
       width: 100%;
-      height: 200px;
+      height: 210px;
       padding: 0.6rem;
       font-family: inherit;
       margin-top: 0.5rem;
@@ -44,7 +44,7 @@
       color: #000;
       border: none;
       padding: 0.75rem 1.6rem;
-      margin-top: 1rem;
+      margin-top: 0.8rem;
       margin-right: 0.5rem;
       cursor: pointer;
       font-size: 1rem;
@@ -60,16 +60,16 @@
       white-space: pre-wrap;
     }
 
+    .section a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
     footer {
       margin-top: 3rem;
       font-size: 0.9rem;
       border-top: 2px solid #ccc;
       padding-top: 1rem;
-    }
-
-    .section a {
-      color: inherit;
-      text-decoration: underline;
     }
   </style>
 </head>
@@ -83,18 +83,17 @@
   <h2>Step 1: Get Your Questions Out of the Original Tool</h2>
 
   <p>
-    Most quiz platforms do <em>not</em> offer a clean export that includes questions and correct answers.
+    Most quiz platforms do <em>not</em> provide a clean export that includes questions and correct answers.
     The goal of this step is to make sure the text is <strong>visible and selectable</strong> so it can be
-    extracted accurately by the AI tool.
+    accurately extracted by the AI tool.
   </p>
 
   <p><strong>General Rule (Works for Most Tools)</strong></p>
   <ul>
     <li>Open the quiz or assessment while logged in</li>
     <li>Turn on <em>Show Answers</em> or the <em>Answer Key</em></li>
-    <li>Choose <strong>Print</strong></li>
-    <li>
-      When the browser’s <strong>print preview</strong> opens:
+    <li>Select <strong>Print</strong></li>
+    <li>When the browser’s <strong>print preview</strong> opens:
       <ul>
         <li>If the text is selectable, copy directly from the preview</li>
         <li>You may also save as a PDF if the text is readable</li>
@@ -104,40 +103,36 @@
 
   <p><strong>Platform‑Specific Notes</strong></p>
 
-  <p><strong>
-    <a href="https://dashboard.blook-setsBlooket</a>
-  </strong></p>
+  <p><strong><a href="https://dashboard.blooket.com/my-sets" target="_blank" rel="noopener noreferrer">Blooket</a></strong></p>
   <ul>
     <li>Open your question set</li>
     <li>Turn on the <em>Answer Key</em></li>
     <li>Select <strong>Print</strong></li>
-    <li>
-      When print preview opens:
-      <ul>
-        <li><strong>Do NOT save the PDF</strong> — Blooket exports image‑based files</li>
-        <li><strong>Copy questions and answers directly from the print preview</strong></li>
-      </ul>
-    </li>
+    <li><strong>Do NOT save the PDF</strong> — Blooket exports image‑based files</li>
+    <li><strong>Copy questions and answers directly from the print preview</strong></li>
   </ul>
 
   <p><strong>
-    <a href="https://kahhoot</a>,
-    <a href="https://www.gimkit.com/me" target="_blank" rel="noopenere <em>Show Answers</em> is enabled before printing</li>
+    <a href="https://kahoot.it/" target="_blank" rel="noopener noreferrer">Kahoot</a>,
+    <a href="https://www.gimkit.com/me" target="_blank" rel="noopener noreferrer">Gimkit</a>
+  </strong></p>
+  <ul>
+    <li>Make sure <em>Show Answers</em> is enabled</li>
     <li>Copy from print preview or save as PDF</li>
   </ul>
 
-  <p><strong>
-    <a href="https://quizlet.com/" target="_blank" rel="If you own the set: Export → Copy Text</li>
+  <p><strong><a href="https://quizlet.com/" target="_blank" rel="noopener noreferrer">Quizlet</a></strong></p>
+  <ul>
+    <li>If you own the set: Export → Copy Text</li>
     <li>If not: Print → copy from preview or save as PDF</li>
   </ul>
 
-  <p><strong>
-    <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer to Worksheet view</li>
+  <p><strong><a href="https://wayground.com/" target="_blank" rel="noopener noreferrer">Wayground</a></strong></p>
+  <ul>
+    <li>Switch to Worksheet view</li>
     <li>Turn on the Answer Key</li>
     <li>Print → copy from preview or download PDF</li>
   </ul>
-
-  <p>Continue to <strong>Step 2</strong> once your content is copied or saved.</p>
 </div>
 
 <!-- STEP 2 -->
@@ -145,27 +140,26 @@
   <h2>Step 2: Use the AI Converter</h2>
 
   <p>
-    In this step, you’ll use a Monroe One BOCES custom AI tool to extract questions,
-    answer choices, and correct answers into a neutral format.
+    Use the Monroe One BOCES custom AI tool to extract questions, answer choices,
+    and correct answers into a neutral format.
   </p>
 
   <p>
     👉
     <a href="https://app.magicschool.ai/tools/custom-chatbot?toolCustomizationId=1640326a-f8aa-43e3-9e6b-f03882c4be67"
-       target="_blank" rel="noopenererter (AI)</strong>
+       target="_blank" rel="noopener noreferrer">
+      <strong>M1B Gamified Learning Tool Converter (AI)</strong>
     </a>
     <br>(opens in a new tab)
   </p>
 
   <ol>
-    <li>Click the link above to open the AI tool</li>
-    <li>Upload your PDF or paste copied questions</li>
+    <li>Open the AI tool using the link above</li>
+    <li>Upload your PDF or paste copied text</li>
     <li><strong>Scroll down and click the “Generate” button</strong></li>
     <li>Wait for the AI to format your questions</li>
     <li>Copy the <strong>entire AI‑generated output</strong></li>
   </ol>
-
-  <p>Return here and continue to <strong>Step 3</strong>.</p>
 </div>
 
 <!-- STEP 3 -->
@@ -182,6 +176,13 @@
   <button onclick="convertDisplay('Wayground')">Convert for Wayground</button>
   <button onclick="convertDisplay('Nearpod')">Format for Nearpod</button>
   <button onclick="convertDisplay('Microsoft Forms')">Format for Microsoft Forms</button>
+
+  <p><strong>Open tool:</strong>
+    <a href="https://www.gimkit.com/me" target="_blank" rel="noopener noreferrer">Gimkit</a> |
+    <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer">Wayground</a> |
+    <a href="https://nearpod.com/" target="_blank" rel="noopener noreferrer">Nearpod</a> |
+    <a href="https://forms.office.com/" target="_blank" rel="noopener noreferrer">Microsoft Forms</a>
+  </p>
 
   <div class="output" id="pasteOutput">No formatted output yet.</div>
 
@@ -212,12 +213,11 @@ async function pasteFromClipboard() {
 
 function clearPasteBox() {
   document.getElementById("pasteInput").value = "";
-  document.getElementById("pasteOutput").textContent =
-    "No formatted output yet.";
+  document.getElementById("pasteOutput").textContent = "No formatted output yet.";
 }
 
 function splitQuestionBlocks(text) {
-  return text.split(/QUESTION\s+\d+/i)
+  return text.split(/QUESTION\\s+\\d+/i)
     .map(b => b.trim())
     .filter(b => b.length > 30);
 }
@@ -229,10 +229,10 @@ function convertDisplay(target) {
     return;
   }
   pasteOutput.textContent =
-    "Converted for: " + target + "\n\n" +
+    "Converted for: " + target + "\\n\\n" +
     splitQuestionBlocks(raw)
-      .map((b,i) => `Question ${i+1}\n${b}`)
-      .join("\n\n");
+      .map((b,i) => `Question ${i+1}\\n${b}`)
+      .join("\\n\\n");
 }
 
 function copyOutput() {
@@ -247,15 +247,15 @@ function exportGimkitCSV() {
   }
 
   let csv =
-    "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
+    "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\\n";
 
   splitQuestionBlocks(raw).forEach(block => {
-    const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
+    const lines = block.split("\\n").map(l => l.trim()).filter(Boolean);
     const question =
       lines.find(l => l.startsWith("Question:"))?.replace("Question:","").trim() || "";
 
-    const answers = lines.filter(l => /^[A-D]\./.test(l)).map(l => ({
-      text: l.replace(/^[A-D]\.\s*/,"").replace("✅","").trim(),
+    const answers = lines.filter(l => /^[A-D]\\./.test(l)).map(l => ({
+      text: l.replace(/^[A-D]\\.\\s*/,"").replace("✅","").trim(),
       correct: l.includes("✅")
     }));
 
@@ -263,13 +263,13 @@ function exportGimkitCSV() {
     const incorrect = answers.filter(a => !a.correct).map(a => a.text);
 
     csv += [question, correct, incorrect[0]||"", incorrect[1]||"", incorrect[2]||""]
-      .map(v => `"${v.replace(/"/g,'""')}"`).join(",") + "\n";
+      .map(v => `"${v.replace(/"/g,'""')}"`).join(",") + "\\n";
   });
 
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([csv], {type:"text/csv"}));
-  a.download = "gimkit_import.csv";
-  a.click();
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(new Blob([csv], {type:"text/csv"}));
+  link.download = "gimkit_import.csv";
+  link.click();
 }
 </script>
 
