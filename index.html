@@ -255,43 +255,6 @@
 </footer>
 
 <script>
-async function pasteFromClipboard() {
-  try {
-    document.getElementById("pasteInput").value =
-      await navigator.clipboard.readText();
-  } catch {
-    alert("Clipboard access blocked. Please paste manually.");
-  }
-}
-
-function clearPasteBox() {
-  document.getElementById("pasteInput").value = "";
-  document.getElementById("pasteOutput").textContent = "No formatted output yet.";
-}
-
-function splitQuestionBlocks(text) {
-  return text.split(/QUESTION\s+\d+/i)
-    .map(b => b.trim())
-    .filter(b => b.length > 30);
-}
-
-function convertDisplay(target) {
-  const raw = pasteInput.value.trim();
-  if (!raw) {
-    pasteOutput.textContent = "Paste AI output first.";
-    return;
-  }
-  pasteOutput.textContent =
-    "Converted for: " + target + "\n\n" +
-    splitQuestionBlocks(raw)
-      .map((b,i) => `Question ${i+1}\n${b}`)
-      .join("\n\n");
-}
-
-function copyOutput() {
-  navigator.clipboard.writeText(pasteOutput.textContent);
-}
-
 <script>
 async function pasteFromClipboard() {
   try {
@@ -304,8 +267,7 @@ async function pasteFromClipboard() {
 
 function clearPasteBox() {
   document.getElementById("pasteInput").value = "";
-  document.getElementById("pasteOutput").textContent =
-    "No formatted output yet.";
+  document.getElementById("pasteOutput").textContent = "No formatted output yet.";
 }
 
 function splitQuestionBlocks(text) {
@@ -333,20 +295,14 @@ function copyOutput() {
   navigator.clipboard.writeText(pasteOutput.textContent);
 }
 
-<script>
 function exportGimkitCSV() {
-  alert("Export function is running");
-
   const raw = document.getElementById("pasteInput").value.trim();
   if (!raw) {
     alert("Paste AI output first.");
     return;
   }
 
-  const blocks = raw
-    .split(/QUESTION\s+\d+/i)
-    .map(b => b.trim())
-    .filter(b => b.length > 30);
+  const blocks = splitQuestionBlocks(raw);
 
   let csv =
     "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
@@ -370,6 +326,7 @@ function exportGimkitCSV() {
     const correctLine = lines.find(l =>
       l.toLowerCase().startsWith("correct answer:")
     );
+
     if (correctLine) {
       correctLetter = correctLine.split(":")[1].trim().charAt(0);
     }
@@ -397,13 +354,10 @@ function exportGimkitCSV() {
     ].map(v => `"${v.replace(/"/g, '""')}"`).join(",") + "\n";
   });
 
-  const blob = new Blob([csv], { type: "text/csv" });
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
   link.download = "gimkit_import.csv";
   link.click();
 }
 </script>
-
-</body>
-</html>
