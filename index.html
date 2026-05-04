@@ -293,6 +293,46 @@ function copyOutput() {
 }
 
 <script>
+async function pasteFromClipboard() {
+  try {
+    document.getElementById("pasteInput").value =
+      await navigator.clipboard.readText();
+  } catch {
+    alert("Clipboard access blocked. Please paste manually.");
+  }
+}
+
+function clearPasteBox() {
+  document.getElementById("pasteInput").value = "";
+  document.getElementById("pasteOutput").textContent =
+    "No formatted output yet.";
+}
+
+function splitQuestionBlocks(text) {
+  return text
+    .split(/QUESTION\s+\d+/i)
+    .map(b => b.trim())
+    .filter(b => b.length > 30);
+}
+
+function convertDisplay(target) {
+  const raw = pasteInput.value.trim();
+  if (!raw) {
+    pasteOutput.textContent = "Paste AI output first.";
+    return;
+  }
+
+  pasteOutput.textContent =
+    "Converted for: " + target + "\n\n" +
+    splitQuestionBlocks(raw)
+      .map((b, i) => `Question ${i + 1}\n${b}`)
+      .join("\n\n");
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(pasteOutput.textContent);
+}
+
 function exportGimkitCSV() {
   const raw = document.getElementById("pasteInput").value.trim();
   if (!raw) {
@@ -300,10 +340,7 @@ function exportGimkitCSV() {
     return;
   }
 
-  const blocks = raw
-    .split(/QUESTION\s+\d+/i)
-    .map(b => b.trim())
-    .filter(b => b.length > 30);
+  const blocks = splitQuestionBlocks(raw);
 
   let csv =
     "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
@@ -311,25 +348,19 @@ function exportGimkitCSV() {
   blocks.forEach(block => {
     const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
 
-    // --- Extract question ---
     const questionLine = lines.find(l => l.startsWith("Question:"));
     const question = questionLine
       ? questionLine.replace("Question:", "").trim()
       : "";
 
-    // --- Extract answer choices ---
     const answerLines = lines.filter(l => /^[A-D]\./.test(l));
-    const answers = answerLines.map(l => {
-      return {
-        letter: l.charAt(0),
-        text: l.replace(/^[A-D]\.\s*/, "").replace("✅", "").trim(),
-        markedCorrect: l.includes("✅")
-      };
-    });
+    const answers = answerLines.map(l => ({
+      letter: l.charAt(0),
+      text: l.replace(/^[A-D]\.\s*/, "").replace("✅", "").trim(),
+      markedCorrect: l.includes("✅")
+    }));
 
-    // --- Determine correct answer ---
     let correctLetter = "";
-
     const correctLine = lines.find(l =>
       l.toLowerCase().startsWith("correct answer:")
     );
@@ -352,7 +383,6 @@ function exportGimkitCSV() {
       }
     });
 
-    // --- Build CSV row ---
     const row = [
       question,
       correctAnswer || "",
@@ -371,7 +401,5 @@ function exportGimkitCSV() {
   link.click();
 }
 </script>
-
- 
 </body>
 </html>
