@@ -372,32 +372,6 @@ function exportGimkitCSV() {
 }
 </script>
 
-  let csv =
-    "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
-
-  splitQuestionBlocks(raw).forEach(block => {
-    const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
-    const question =
-      lines.find(l => l.startsWith("Question:"))?.replace("Question:","").trim() || "";
-
-    const answers = lines.filter(l => /^[A-D]\./.test(l)).map(l => ({
-      text: l.replace(/^[A-D]\.\s*/,"").replace("✅","").trim(),
-      correct: l.includes("✅")
-    }));
-
-    const correct = answers.find(a => a.correct)?.text || "";
-    const incorrect = answers.filter(a => !a.correct).map(a => a.text);
-
-    csv += [question, correct, incorrect[0]||"", incorrect[1]||"", incorrect[2]||""]
-      .map(v => `"${v.replace(/"/g,'""')}"`).join(",") + "\n";
-  });
-
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(new Blob([csv], {type:"text/csv"}));
-  link.download = "gimkit_import.csv";
-  link.click();
-}
-</script>
-
+ 
 </body>
 </html>
