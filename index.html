@@ -292,12 +292,85 @@ function copyOutput() {
   navigator.clipboard.writeText(pasteOutput.textContent);
 }
 
+<script>
 function exportGimkitCSV() {
-  const raw = pasteInput.value.trim();
+  const raw = document.getElementById("pasteInput").value.trim();
   if (!raw) {
     alert("Paste AI output first.");
     return;
   }
+
+  const blocks = raw
+    .split(/QUESTION\s+\d+/i)
+    .map(b => b.trim())
+    .filter(b => b.length > 30);
+
+  let csv =
+    "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
+
+  blocks.forEach(block => {
+    const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
+
+    // --- Extract question ---
+    const questionLine = lines.find(l => l.startsWith("Question:"));
+    const question = questionLine
+      ? questionLine.replace("Question:", "").trim()
+      : "";
+
+    // --- Extract answer choices ---
+    const answerLines = lines.filter(l => /^[A-D]\./.test(l));
+    const answers = answerLines.map(l => {
+      return {
+        letter: l.charAt(0),
+        text: l.replace(/^[A-D]\.\s*/, "").replace("✅", "").trim(),
+        markedCorrect: l.includes("✅")
+      };
+    });
+
+    // --- Determine correct answer ---
+    let correctLetter = "";
+
+    const correctLine = lines.find(l =>
+      l.toLowerCase().startsWith("correct answer:")
+    );
+
+    if (correctLine) {
+      correctLetter = correctLine.split(":")[1].trim().charAt(0);
+    }
+
+    let correctAnswer = "";
+    let incorrectAnswers = [];
+
+    answers.forEach(a => {
+      if (
+        (correctLetter && a.letter === correctLetter) ||
+        (!correctLetter && a.markedCorrect)
+      ) {
+        correctAnswer = a.text;
+      } else {
+        incorrectAnswers.push(a.text);
+      }
+    });
+
+    // --- Build CSV row ---
+    const row = [
+      question,
+      correctAnswer || "",
+      incorrectAnswers[0] || "",
+      incorrectAnswers[1] || "",
+      incorrectAnswers[2] || ""
+    ].map(v => `"${v.replace(/"/g, '""')}"`);
+
+    csv += row.join(",") + "\n";
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "gimkit_import.csv";
+  link.click();
+}
+</script>
 
   let csv =
     "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
