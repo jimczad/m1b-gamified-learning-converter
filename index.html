@@ -295,7 +295,7 @@ function copyOutput() {
 }
 
 function exportGimkitCSV() {
-  const raw = document.getElementById("pasteInput").value.trim();
+  const raw = pasteInput.value.trim();
   if (!raw) {
     alert("Paste AI output first.");
     return;
@@ -309,11 +309,13 @@ function exportGimkitCSV() {
   blocks.forEach(block => {
     const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
 
+    // Question
     const questionLine = lines.find(l => l.startsWith("Question:"));
     const question = questionLine
       ? questionLine.replace("Question:", "").trim()
       : "";
 
+    // Answers A–D
     const answerLines = lines.filter(l => /^[A-D]\./.test(l));
     const answers = answerLines.map(l => ({
       letter: l.charAt(0),
@@ -321,11 +323,11 @@ function exportGimkitCSV() {
       markedCorrect: l.includes("✅")
     }));
 
+    // Correct answer letter (if provided)
     let correctLetter = "";
     const correctLine = lines.find(l =>
       l.toLowerCase().startsWith("correct answer:")
     );
-
     if (correctLine) {
       correctLetter = correctLine.split(":")[1].trim().charAt(0);
     }
@@ -346,7 +348,7 @@ function exportGimkitCSV() {
 
     csv += [
       question,
-      correctAnswer || "",
+      correctAnswer,
       incorrectAnswers[0] || "",
       incorrectAnswers[1] || "",
       incorrectAnswers[2] || ""
