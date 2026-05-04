@@ -333,14 +333,20 @@ function copyOutput() {
   navigator.clipboard.writeText(pasteOutput.textContent);
 }
 
+<script>
 function exportGimkitCSV() {
+  alert("Export function is running");
+
   const raw = document.getElementById("pasteInput").value.trim();
   if (!raw) {
     alert("Paste AI output first.");
     return;
   }
 
-  const blocks = splitQuestionBlocks(raw);
+  const blocks = raw
+    .split(/QUESTION\s+\d+/i)
+    .map(b => b.trim())
+    .filter(b => b.length > 30);
 
   let csv =
     "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
@@ -364,7 +370,6 @@ function exportGimkitCSV() {
     const correctLine = lines.find(l =>
       l.toLowerCase().startsWith("correct answer:")
     );
-
     if (correctLine) {
       correctLetter = correctLine.split(":")[1].trim().charAt(0);
     }
@@ -383,23 +388,22 @@ function exportGimkitCSV() {
       }
     });
 
-    const row = [
+    csv += [
       question,
       correctAnswer || "",
       incorrectAnswers[0] || "",
       incorrectAnswers[1] || "",
       incorrectAnswers[2] || ""
-    ].map(v => `"${v.replace(/"/g, '""')}"`);
-
-    csv += row.join(",") + "\n";
+    ].map(v => `"${v.replace(/"/g, '""')}"`).join(",") + "\n";
   });
 
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const blob = new Blob([csv], { type: "text/csv" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
   link.download = "gimkit_import.csv";
   link.click();
 }
 </script>
+
 </body>
 </html>
