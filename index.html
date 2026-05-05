@@ -219,23 +219,40 @@
 <div class="section">
   <h2>Step 3: Convert & Export into an Approved Tool</h2>
 
-  <button onclick="pasteFromClipboard()">Paste from Clipboard</button>
-  <button onclick="clearPasteBox()">Clear Text</button>
+<button onclick="pasteFromClipboard()">Paste from Clipboard</button>
+<button onclick="clearPasteBox()">Clear Text</button>
 
-  <textarea id="pasteInput" placeholder="Paste AI‑formatted questions here…"></textarea>
+<textarea id="pasteInput" placeholder="Paste AI‑formatted questions here…"></textarea>
 
-  <h3>Convert for Your Chosen Tool</h3>
-  <button onclick="convertDisplay('Gimkit')">Convert for Gimkit</button>
-  <button onclick="convertDisplay('Wayground')">Convert for Wayground</button>
-  <button onclick="convertDisplay('Nearpod')">Format for Nearpod</button>
-  <button onclick="convertDisplay('Microsoft Forms')">Format for Microsoft Forms</button>
+<h3>Convert Questions</h3>
+<p>
+  Use this option for tools that accept pasted questions, such as
+  <strong>Wayground, Nearpod, and Microsoft Forms</strong>.
+</p>
 
-  <p><strong>Open tool:</strong>
-    <a href="https://www.gimkit.com/me" target="_blank" rel="noopener noreferrer">Gimkit</a> |
-    <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer">Wayground</a> |
-    <a href="https://nearpod.com/" target="_blank" rel="noopener noreferrer">Nearpod</a> |
-    <a href="https://forms.office.com/" target="_blank" rel="noopener noreferrer">Microsoft Forms</a>
-  </p>
+<button onclick="convertDisplay('Paste‑based tools')">
+  Convert & Copy Questions
+</button>
+
+<div class="output" id="pasteOutput">No formatted output yet.</div>
+
+<button onclick="copyOutput()">Copy Converted Output</button>
+
+<hr>
+
+<h3>Gimkit (CSV Import Required)</h3>
+<p>
+  Gimkit requires a specific CSV format. Use this option when importing into Gimkit.
+</p>
+
+<button onclick="exportGimkitCSV()">Export CSV for Gimkit</button>
+
+<p><strong>Open tool:</strong>
+  <a href="https://www.gimkit.com/me" target="_blank" rel="noopener noreferrer">Gimkit</a> |
+  <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer">Wayground</a> |
+  <a href="https://nearpod.com/" target="_blank" rel="noopener noreferrer">Nearpod</a> |
+  <a href="https://forms.office.com/" target="_blank" rel="noopener noreferrer">Microsoft Forms</a>
+</p>
 
   <div class="output" id="pasteOutput">No formatted output yet.</div>
 
