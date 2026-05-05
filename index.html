@@ -217,42 +217,50 @@
 
 <!-- STEP 3 -->
 <div class="section">
-  <h2>Step 3: Convert & Export into an Approved Tool</h2>
+  <h2>Step 3: Convert & Export</h2>
 
-<button onclick="pasteFromClipboard()">Paste from Clipboard</button>
-<button onclick="clearPasteBox()">Clear Text</button>
+  <p>
+    Paste the questions extracted by the AI bot below. Then choose how you want to use them.
+  </p>
 
-<textarea id="pasteInput" placeholder="Paste AI‑formatted questions here…"></textarea>
+  <button onclick="pasteFromClipboard()">Paste from Clipboard</button>
+  <button onclick="clearPasteBox()">Clear Text</button>
 
-<h3>Convert Questions</h3>
-<p>
-  Use this option for tools that accept pasted questions, such as
-  <strong>Wayground, Nearpod, and Microsoft Forms</strong>.
-</p>
+  <textarea id="pasteInput" placeholder="Paste AI‑formatted questions here…"></textarea>
 
-<button onclick="convertDisplay('Paste‑based tools')">
-  Convert & Copy Questions
-</button>
+  <h3>Convert & Copy Questions</h3>
+  <p>
+    Use this option for tools that accept pasted questions or AI input,
+    such as <strong>Wayground, Nearpod, and Microsoft Forms</strong>.
+  </p>
 
-<div class="output" id="pasteOutput">No formatted output yet.</div>
+  <button onclick="convertDisplay('Universal format')">
+    Convert & Copy Questions
+  </button>
 
-<button onclick="copyOutput()">Copy Converted Output</button>
+  <div class="output" id="pasteOutput">
+    Converted questions will appear here.
+  </div>
 
-<hr>
+  <button onclick="copyOutput()">Copy Converted Questions</button>
 
-<h3>Gimkit (CSV Import Required)</h3>
-<p>
-  Gimkit requires a specific CSV format. Use this option when importing into Gimkit.
-</p>
+  <hr>
 
-<button onclick="exportGimkitCSV()">Export CSV for Gimkit</button>
+  <h3>Gimkit (CSV Import Required)</h3>
+  <p>
+    Gimkit requires a specific spreadsheet format.
+    Use this option when importing into Gimkit.
+  </p>
 
-<p><strong>Open approved tool:</strong>
-  <a href="https://www.gimkit.com/me" target="_blank" rel="noopener noreferrer">Gimkit</a> |
-  <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer">Wayground</a> |
-  <a href="https://nearpod.com/" target="_blank" rel="noopener noreferrer">Nearpod</a> |
-  <a href="https://forms.office.com/" target="_blank" rel="noopener noreferrer">Microsoft Forms</a>
-</p>
+  <button onclick="exportGimkitCSV()">Export CSV for Gimkit</button>
+
+  <p><strong>Open tool:</strong>
+    <a href="https://www.gimkit.com/me" target="_blank" rel="noopener noreferrer">Gimkit</a> |
+    <a href="https://wayground.com/" target="_blank" rel="noopener noreferrer">Wayground</a> |
+    <a href="https://nearpod.com/" target="_blank" rel="noopener noreferrer">Nearpod</a> |
+    <a href="https://forms.office.com/" target="_blank" rel="noopener noreferrer">Microsoft Forms</a>
+  </p>
+</div>
 
   
 
