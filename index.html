@@ -316,8 +316,10 @@ function exportGimkitCSV() {
 
   const blocks = splitQuestionBlocks(raw);
 
-  let csv =
-    "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
+  
+let csv =
+  "Gimkit Spreadsheet Import Template\n" +
+  "Question,Correct Answer,Incorrect Answer 1,Incorrect Answer 2 (Optional),Incorrect Answer 3 (Optional)\n";
 
   blocks.forEach(block => {
     const lines = block.split("\n").map(l => l.trim()).filter(Boolean);
